@@ -1,0 +1,27 @@
+{
+  "name": "nightlife",
+  "version": "1.0.0",
+  "description": "A nightlife coordination app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxBoykoII/nightlife.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongo"
+  ],
+  "author": "Max Boyko <maxboykomax@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxBoykoII/nightlife/issues"
+  },
+  "homepage": "https://github.com/MaxBoykoII/nightlife#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
