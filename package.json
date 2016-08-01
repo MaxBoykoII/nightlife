@@ -4,6 +4,7 @@
   "description": "A nightlife coordination app",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +23,15 @@
   },
   "homepage": "https://github.com/MaxBoykoII/nightlife#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "bower": "^1.7.9",
+    "express": "^4.14.0",
+    "merge": "^1.2.0",
+    "node-yelp-api": "^1.1.0",
+    "yelp": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp-inject": "^4.1.0",
+    "jscs-jsdoc": "^2.0.0",
+    "jshint-stylish": "^2.2.0"
   }
 }

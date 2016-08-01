@@ -3,15 +3,20 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Storystrap Template</title>
-		<meta name="generator" content="Bootply" />
+		<title>Nightlife</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+	  <!--bower:css-->
+	  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+	  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+	  <!--endbower-->
+	  
+	  <!--inject:css-->
+	  <link rel="stylesheet" href="/css/styles.css">
+	  <!--endinject-->
+	  
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
 	</head>
 	<body>
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
@@ -58,8 +63,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <h1>Storystrap
-          <p class="lead"></p>
+        <h1>Joyous Nightlife
+          <p class="lead">Helping you enrich your nightlife!</p>
         </h1>
       </div>
       <div class="col-md-5">
@@ -246,8 +251,15 @@
     </div>
   </div>
 </footer>
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+	<!-- Load libraries -->
+	<!--bower:js-->
+	<script src="lib/jquery/dist/jquery.js"></script>
+	<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!--endbower-->
+	
+	<!-- Load app files -->
+	<!--inject:js-->
+	<script src="/js/test.js"></script>
+	<!--endinject -->
 	</body>
 </html>
