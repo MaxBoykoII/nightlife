@@ -1,6 +1,7 @@
 var express = require('express');
 var apiRouter = express.Router();
 var Yelp = require('yelp');
+
 var router = function(oauth) {
     var yelp = new Yelp(oauth);
     apiRouter.route('/')
@@ -12,7 +13,7 @@ var router = function(oauth) {
             };
             yelp.search(parameters)
                 .then(function(data) {
-                    res.json(data);
+                    res.json(data.businesses);
                 })
                 .catch(function(err) {
                     res.json(err);
