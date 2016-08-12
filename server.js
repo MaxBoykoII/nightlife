@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = express('express-session');
 var oauth = {
@@ -11,6 +12,7 @@ var apiRouter = require('./routes/api/main')(oauth);
 var authRouter = require('./routes/auth')();
 
 var app = express();
+var db = mongoose.connect(process.env.db || 'mongodb://maxboyko-nightlife-3563982');
 
 
 app.use(bodyParser.json());
@@ -18,9 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 try {
     app.use(session({
-        secret: process.env.SESSION_SECRET || 'secret',
-        resave: false,
-        saveUninitialized: false
+        secret: 'dev-secret262'
     }));
 }
 catch (e) {

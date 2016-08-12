@@ -5,7 +5,9 @@ var authRouter = express.Router();
 var router = function() {
     authRouter.route('/google')
         .get(passport.authenticate('google', {
-            scope: []
+            scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email'
+            ]
         }));
     authRouter.route('/google/callback')
         .get(passport.authenticate('google', {
