@@ -6,6 +6,11 @@ import {
 from '../classes/bar';
 
 import {
+    Query
+}
+from '../classes/query';
+
+import {
     Component
 }
 from '@angular/core';
@@ -20,28 +25,34 @@ import {
 }
 from '../services/api.service';
 
+import {
+    StorageService
+}
+from '../services/storage.service';
+
 @Component({
     selector: 'bars',
     templateUrl: './templates/bars.viewer.html',
-    providers: [HTTP_PROVIDERS, ApiService]
+    providers: [HTTP_PROVIDERS, ApiService, StorageService]
 })
 
 export class BarsViewer {
     bars: Bar[];
-        query: any;
-    constructor(private _apiService: ApiService) {
-        this.query = {
-            val: ''
-        };
+    query: Query;
+    constructor(private _apiService: ApiService, private _storageService: StorageService) {
+        this.query = new Query('');
         this.bars = [];
     }
- 
-    search(location = 'San Francisco') {
+
+    search(location) {
+        this.query.val = location;
+        this._storageService.store(this.query);
         this._apiService.fetch(location).subscribe((bars: Bar[]) => {
             this.bars = bars;
         });
     }
     ngOnInit() {
-        this.search();
+        this.query = this._storageService.retrieve() || new Query('San Francisco');
+        this.search(this.query.val);
     }
 }
