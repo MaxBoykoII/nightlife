@@ -14,14 +14,21 @@ var api_service_1 = require('../services/api.service');
 var BarsViewer = (function () {
     function BarsViewer(_apiService) {
         this._apiService = _apiService;
+        this.query = {
+            val: ''
+        };
         this.bars = [];
     }
-    BarsViewer.prototype.ngOnInit = function () {
+    BarsViewer.prototype.search = function (location) {
         var _this = this;
-        this._apiService.fetch().subscribe(function (data) {
-            _this.bars = data;
-            console.log(_this.bars);
+        if (location === void 0) { location = 'San Francisco'; }
+        console.log(this.query.val, location);
+        this._apiService.fetch(location).subscribe(function (bars) {
+            _this.bars = bars;
         });
+    };
+    BarsViewer.prototype.ngOnInit = function () {
+        this.search();
     };
     BarsViewer = __decorate([
         core_1.Component({

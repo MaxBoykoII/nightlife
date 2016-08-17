@@ -11,6 +11,7 @@ var router = function(oauth) {
                 term: 'bar',
                 location: location || 'San Francisco, CA',
             };
+            console.log(parameters);
             yelp.search(parameters)
                 .then(function(data) {
                     res.json(data.businesses);

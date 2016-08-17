@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _ = require('lodash');
+var bar_1 = require('../classes/bar');
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
@@ -18,7 +20,12 @@ var ApiService = (function () {
     ApiService.prototype.fetch = function (location) {
         if (location === void 0) { location = "San Francisco"; }
         return this.http.get("/api?location=" + location)
-            .map(function (response) { return response.json(); });
+            .map(function (response) { return response.json(); })
+            .map(function (data) {
+            return _.map(data, function (bar) {
+                return new bar_1.Bar(bar.id, bar.display_phone, bar.image_url, bar.name, bar.rating, bar.url);
+            });
+        });
     };
     ApiService = __decorate([
         core_1.Injectable(), 

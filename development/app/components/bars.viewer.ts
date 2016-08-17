@@ -1,3 +1,10 @@
+import * as _ from 'lodash';
+
+import {
+    Bar
+}
+from '../classes/bar';
+
 import {
     Component
 }
@@ -20,12 +27,21 @@ from '../services/api.service';
 })
 
 export class BarsViewer {
-    bars = []
-    constructor(private _apiService: ApiService) {}
-    ngOnInit() {
-        this._apiService.fetch().subscribe(data => {
-                this.bars = data;
-                console.log(this.bars);
-            });
-        }
+    bars: Bar[];
+        query: any;
+    constructor(private _apiService: ApiService) {
+        this.query = {
+            val: ''
+        };
+        this.bars = [];
     }
+ 
+    search(location = 'San Francisco') {
+        this._apiService.fetch(location).subscribe((bars: Bar[]) => {
+            this.bars = bars;
+        });
+    }
+    ngOnInit() {
+        this.search();
+    }
+}
