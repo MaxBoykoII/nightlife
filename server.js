@@ -1,7 +1,29 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var session = express('express-session');
+var session = require('cookie-session');
+
+
+var app = express();
+var db = mongoose.connect(process.env.db || 'mongodb://maxboyko-nightlife-3563982');
+
+//app.use(cookieParser);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+try {
+    app.use(session({
+        secret: 'dev',
+    }));
+}
+catch (e) {
+    console.log(e);
+}
+
+require('./config/passport')(app);
+
 var oauth = {
     consumer_key: process.env.consumer_key,
     consumer_secret: process.env.consumer_secret,
@@ -10,24 +32,6 @@ var oauth = {
 };
 var apiRouter = require('./routes/api/main')(oauth);
 var authRouter = require('./routes/auth')();
-
-var app = express();
-var db = mongoose.connect(process.env.db || 'mongodb://maxboyko-nightlife-3563982');
-
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-try {
-    app.use(session({
-        secret: 'dev-secret262'
-    }));
-}
-catch (e) {
-    console.log(e);
-}
-
-require('./config/passport')(app);
 
 app.use(express.static(__dirname + '/public'));
 app.use('/api', apiRouter);
