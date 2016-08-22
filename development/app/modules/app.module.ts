@@ -4,7 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 
-import { BarsViewer } from '../components/bars.viewer';
+import { App } from '../components/app.component';
+import { BarsViewer } from '../components/bars-viewer.component';
+
 import { HTTP_PROVIDERS } from '@angular/http';
 
 import { ApiService } from '../services/api.service';
@@ -13,9 +15,9 @@ import { AuthService } from '../services/auth.service';
 
 @NgModule({
     imports: [BrowserModule, FormsModule],
-    declarations: [BarsViewer],
+    declarations: [App, BarsViewer],
     providers: [HTTP_PROVIDERS, ApiService, StorageService, AuthService],
-    bootstrap: [BarsViewer]
+    bootstrap: [App]
 })
 
 export class AppModule {}

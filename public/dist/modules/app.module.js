@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
-var bars_viewer_1 = require('../components/bars.viewer');
+var app_component_1 = require('../components/app.component');
+var bars_viewer_component_1 = require('../components/bars-viewer.component');
 var http_1 = require('@angular/http');
 var api_service_1 = require('../services/api.service');
 var storage_service_1 = require('../services/storage.service');
@@ -22,9 +23,9 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [bars_viewer_1.BarsViewer],
+            declarations: [app_component_1.App, bars_viewer_component_1.BarsViewer],
             providers: [http_1.HTTP_PROVIDERS, api_service_1.ApiService, storage_service_1.StorageService, auth_service_1.AuthService],
-            bootstrap: [bars_viewer_1.BarsViewer]
+            bootstrap: [app_component_1.App]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
