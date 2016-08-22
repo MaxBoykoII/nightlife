@@ -1,7 +1,6 @@
-import { BarsViewer } from './components/bars.viewer';
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import {enableProdMode} from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+//import {enableProdMode} from '@angular/core';
+import {AppModule} from './modules/app.module';
 
-
-enableProdMode();
-bootstrap(BarsViewer);
+//enableProdMode();
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var query_1 = require('../classes/query');
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var api_service_1 = require('../services/api.service');
 var storage_service_1 = require('../services/storage.service');
 var BarsViewer = (function () {
@@ -36,7 +35,6 @@ var BarsViewer = (function () {
         core_1.Component({
             selector: 'bars',
             templateUrl: './templates/bars.viewer.html',
-            providers: [http_1.HTTP_PROVIDERS, api_service_1.ApiService, storage_service_1.StorageService]
         }), 
         __metadata('design:paramtypes', [api_service_1.ApiService, storage_service_1.StorageService])
     ], BarsViewer);
