@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var authRouter = express.Router();
+var _ = require('lodash');
 
 var router = function() {
     authRouter.route('/google')
@@ -14,6 +15,15 @@ var router = function() {
             successRedirect: '/',
             failure: '/'
         }));
+    authRouter.route('/user')
+        .get((req, res) => {
+            if(req.user){
+                res.json(_.assign(req.user, {autheticated: true}));
+            }
+            else {
+                res.json({authenticated: false});
+            }
+        });
 
     return authRouter;
 };

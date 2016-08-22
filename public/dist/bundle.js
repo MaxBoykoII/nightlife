@@ -66254,7 +66254,7 @@ var BarsViewer = (function () {
 }());
 exports.BarsViewer = BarsViewer;
 
-},{"../classes/query":400,"../services/api.service":404,"../services/storage.service":405,"@angular/core":154}],402:[function(require,module,exports){
+},{"../classes/query":400,"../services/api.service":404,"../services/storage.service":406,"@angular/core":154}],402:[function(require,module,exports){
 "use strict";
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var app_module_1 = require('./modules/app.module');
@@ -66278,6 +66278,7 @@ var bars_viewer_1 = require('../components/bars.viewer');
 var http_1 = require('@angular/http');
 var api_service_1 = require('../services/api.service');
 var storage_service_1 = require('../services/storage.service');
+var auth_service_1 = require('../services/auth.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -66285,7 +66286,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
             declarations: [bars_viewer_1.BarsViewer],
-            providers: [http_1.HTTP_PROVIDERS, api_service_1.ApiService, storage_service_1.StorageService],
+            providers: [http_1.HTTP_PROVIDERS, api_service_1.ApiService, storage_service_1.StorageService, auth_service_1.AuthService],
             bootstrap: [bars_viewer_1.BarsViewer]
         }), 
         __metadata('design:paramtypes', [])
@@ -66294,7 +66295,7 @@ var AppModule = (function () {
 }());
 exports.AppModule = AppModule;
 
-},{"../components/bars.viewer":401,"../services/api.service":404,"../services/storage.service":405,"@angular/core":154,"@angular/forms":246,"@angular/http":285,"@angular/platform-browser":318}],404:[function(require,module,exports){
+},{"../components/bars.viewer":401,"../services/api.service":404,"../services/auth.service":405,"../services/storage.service":406,"@angular/core":154,"@angular/forms":246,"@angular/http":285,"@angular/platform-browser":318}],404:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -66333,6 +66334,36 @@ var ApiService = (function () {
 exports.ApiService = ApiService;
 
 },{"../classes/bar":399,"@angular/core":154,"@angular/http":285,"lodash":376,"rxjs/add/operator/map":383}],405:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+var AuthService = (function () {
+    function AuthService(http) {
+        this.http = http;
+    }
+    AuthService.prototype.fetch = function () {
+        return this.http.get('/auth/user')
+            .map(function (response) { return response.json(); });
+    };
+    AuthService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], AuthService);
+    return AuthService;
+}());
+exports.AuthService = AuthService;
+
+},{"@angular/core":154,"@angular/http":285,"rxjs/add/operator/map":383}],406:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

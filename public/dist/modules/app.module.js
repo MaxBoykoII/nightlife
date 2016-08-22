@@ -15,6 +15,7 @@ var bars_viewer_1 = require('../components/bars.viewer');
 var http_1 = require('@angular/http');
 var api_service_1 = require('../services/api.service');
 var storage_service_1 = require('../services/storage.service');
+var auth_service_1 = require('../services/auth.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,7 +23,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
             declarations: [bars_viewer_1.BarsViewer],
-            providers: [http_1.HTTP_PROVIDERS, api_service_1.ApiService, storage_service_1.StorageService],
+            providers: [http_1.HTTP_PROVIDERS, api_service_1.ApiService, storage_service_1.StorageService, auth_service_1.AuthService],
             bootstrap: [bars_viewer_1.BarsViewer]
         }), 
         __metadata('design:paramtypes', [])
