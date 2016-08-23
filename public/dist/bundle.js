@@ -66221,22 +66221,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var auth_service_1 = require('../services/auth.service');
 var App = (function () {
-    function App() {
-        this.testProp = 'yep';
+    function App(_authService) {
+        this._authService = _authService;
+        this.user = { authenticated: false };
     }
+    App.prototype.ngOnInit = function () {
+        var _this = this;
+        this._authService.fetch().subscribe(function (user) {
+            _this.user = user;
+            console.log(_this.user);
+        });
+    };
     App = __decorate([
         core_1.Component({
             selector: 'bar-app',
             templateUrl: './templates/app.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService])
     ], App);
     return App;
 }());
 exports.App = App;
 
-},{"@angular/core":154}],402:[function(require,module,exports){
+},{"../services/auth.service":406,"@angular/core":154}],402:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -66257,7 +66266,6 @@ var BarsViewer = (function () {
         this._storageService = _storageService;
         this.query = new query_1.Query('');
         this.bars = [];
-        console.log("I was called!");
     }
     BarsViewer.prototype.search = function (location) {
         var _this = this;
@@ -66271,10 +66279,13 @@ var BarsViewer = (function () {
         this.query = this._storageService.retrieve() || new query_1.Query('San Francisco');
         this.search(this.query.val);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], BarsViewer.prototype, "user", void 0);
     BarsViewer = __decorate([
         core_1.Component({
             selector: 'bars-viewer',
-            inputs: [],
             templateUrl: './templates/bars-viewer.component.html',
         }), 
         __metadata('design:paramtypes', [api_service_1.ApiService, storage_service_1.StorageService])

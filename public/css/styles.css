@@ -70,6 +70,9 @@ a,a:hover {
   color:#223344;
   text-decoration:none;
 }
+a[hidden=true]{
+  display: none !important;
+}
 
 .icon-bar {
   background-color:#fff;

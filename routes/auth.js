@@ -18,7 +18,7 @@ var router = function() {
     authRouter.route('/user')
         .get((req, res) => {
             if(req.user){
-                res.json(_.assign(req.user, {autheticated: true}));
+                res.json(_.assign(req.user, {authenticated: true}));
             }
             else {
                 res.json({authenticated: false});
