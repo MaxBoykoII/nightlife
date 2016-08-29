@@ -1,7 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var authRouter = express.Router();
-var _ = require('lodash');
+var userController = require('./user.controller');
 
 var router = function() {
     authRouter.route('/google')
@@ -16,31 +16,8 @@ var router = function() {
             failure: '/'
         }));
     authRouter.route('/user')
-        .get((req, res) => {
-            if (req.user) {
-                res.json(_.assign(req.user, {
-                    authenticated: true
-                }));
-            }
-            else {
-                res.json({
-                    authenticated: false
-                });
-            }
-        })
-        .put((req, res) => {
-            /* Route for adding a bar to a user's visited locations */
-            
-            if (req.user) {
-                console.log(req.body);
-                res.json(req.user);
-            }
-            else {
-                res.status(401).send({
-                    error: 'Please login!'
-                });
-            }
-        });
+        .get(userController.get)
+        .put(userController.put);
 
     return authRouter;
 };

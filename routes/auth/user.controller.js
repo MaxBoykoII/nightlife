@@ -28,8 +28,11 @@ var userController = function() {
     };
 
 
-    return {get, put};
-    
+    return {
+        get: get,
+        put: put
+    };
+
 };
 
 
