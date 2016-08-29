@@ -19,6 +19,7 @@ var BarsViewer = (function () {
         this._apiService = _apiService;
         this._storageService = _storageService;
         this._authService = _authService;
+        this.barClicked = new core_1.EventEmitter();
         this.query = new query_1.Query('');
         this.bars = [];
     }
@@ -33,10 +34,8 @@ var BarsViewer = (function () {
     BarsViewer.prototype.going = function (bar) {
         return _.includes(this.user.visited, bar.id);
     };
-    BarsViewer.prototype.addBar = function (id) {
-        this._authService.addBar(this.user._id, id).subscribe(function (user) {
-            console.log(user);
-        });
+    BarsViewer.prototype.emitBar = function (id) {
+        this.barClicked.emit(id);
     };
     BarsViewer.prototype.ngOnInit = function () {
         this.query = this._storageService.retrieve() || new query_1.Query('San Francisco');
@@ -46,6 +45,10 @@ var BarsViewer = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], BarsViewer.prototype, "user", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], BarsViewer.prototype, "barClicked", void 0);
     BarsViewer = __decorate([
         core_1.Component({
             selector: 'bars-viewer',

@@ -69,7 +69,7 @@
         <div class="panel">
           <div class="panel-body">
             <!--/bars-->
-            <bars-viewer [user]='user'></bars-viewer>
+            <bars-viewer [user]='user' (barClicked)="addBar($event)"></bars-viewer>
             <!--/bars-->
             <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
 

@@ -25,7 +25,7 @@
                 <h4><span class="label label-default">{{bar.rating + '/5'}}</span></h4>
                 <h4>
                   <small style="font-family:courier,'new courier';" class="text-muted">{{bar.display_phone}}  • <a [href]='bar.url' class="text-muted">Read More</a>
-                   • <button *ngIf="user.authenticated" class='btn btn-default btn-xs' (click)="addBar(bar.id)">Going <i *ngIf="going(bar)" class="fa fa-check"></i> </button></small>
+                   • <button *ngIf="user.authenticated" class='btn btn-default btn-xs' (click)="emitBar(bar.id)">Going <i *ngIf="going(bar)" class="fa fa-check"></i> </button></small>
                   </h4>
             </div>
         </div>

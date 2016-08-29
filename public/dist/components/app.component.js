@@ -13,13 +13,24 @@ var auth_service_1 = require('../services/auth.service');
 var App = (function () {
     function App(_authService) {
         this._authService = _authService;
-        this.user = { authenticated: false };
+        this.user = {
+            authenticated: false
+        };
     }
-    App.prototype.ngOnInit = function () {
+    App.prototype.fetchUser = function () {
         var _this = this;
         this._authService.fetch().subscribe(function (user) {
             _this.user = user;
             console.log(_this.user);
+        });
+    };
+    App.prototype.ngOnInit = function () {
+        this.fetchUser();
+    };
+    App.prototype.addBar = function (id) {
+        var _this = this;
+        this._authService.addBar(this.user._id, id).subscribe(function (user) {
+            _this.fetchUser();
         });
     };
     App = __decorate([

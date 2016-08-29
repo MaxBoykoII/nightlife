@@ -13,14 +13,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-try {
-    app.use(session({
-        secret: 'dev',
-    }));
-}
-catch (e) {
-    console.log(e);
-}
+
+app.use(session({
+    secret: 'dev',
+}));
 
 require('./config/passport')(app);
 
