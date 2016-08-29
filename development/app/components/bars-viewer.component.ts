@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ApiService } from '../services/api.service';
 import { StorageService } from '../services/storage.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'bars-viewer',
@@ -22,19 +23,27 @@ export class BarsViewer {
     @Input() user: User;
     bars: Bar[];
     query: Query;
-    constructor(private _apiService: ApiService, private _storageService: StorageService) {
+    constructor(private _apiService: ApiService, private _storageService: StorageService, private _authService: AuthService) {
         this.query = new Query('');
         this.bars = [];
     }
 
-    search(location) {
+    search(location):void {
         this.query.val = location;
         this._storageService.store(this.query);
         this._apiService.fetch(location).subscribe((bars: Bar[]) => {
             this.bars = bars;
         });
     }
-    ngOnInit() {
+    going(bar:Bar):boolean {
+        return _.includes(this.user.visited, bar.id);
+    }
+    addBar(id: string): void {
+        this._authService.addBar(this.user._id, id).subscribe((user: User) => {
+            console.log(user);
+        })
+    }
+    ngOnInit():void {
         this.query = this._storageService.retrieve() || new Query('San Francisco');
         this.search(this.query.val);
     }

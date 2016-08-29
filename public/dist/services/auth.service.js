@@ -19,6 +19,20 @@ var AuthService = (function () {
         return this.http.get('/auth/user')
             .map(function (response) { return response.json(); });
     };
+    AuthService.prototype.addBar = function (userId, barId) {
+        var body = {
+            userId: userId,
+            barId: barId
+        };
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        var options = new http_1.RequestOptions({
+            headers: headers
+        });
+        return this.http.put('/auth/user', body, options)
+            .map(function (response) { return response.json(); });
+    };
     AuthService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

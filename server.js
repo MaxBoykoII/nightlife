@@ -31,7 +31,7 @@ var oauth = {
     token_secret: process.env.token_secret,
 };
 var apiRouter = require('./routes/api/main')(oauth);
-var authRouter = require('./routes/auth')();
+var authRouter = require('./routes/auth/main')();
 
 app.use(express.static(__dirname + '/public'));
 app.use('/api', apiRouter);

@@ -66256,14 +66256,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _ = require('lodash');
 var query_1 = require('../classes/query');
 var core_1 = require('@angular/core');
 var api_service_1 = require('../services/api.service');
 var storage_service_1 = require('../services/storage.service');
+var auth_service_1 = require('../services/auth.service');
 var BarsViewer = (function () {
-    function BarsViewer(_apiService, _storageService) {
+    function BarsViewer(_apiService, _storageService, _authService) {
         this._apiService = _apiService;
         this._storageService = _storageService;
+        this._authService = _authService;
         this.query = new query_1.Query('');
         this.bars = [];
     }
@@ -66273,6 +66276,14 @@ var BarsViewer = (function () {
         this._storageService.store(this.query);
         this._apiService.fetch(location).subscribe(function (bars) {
             _this.bars = bars;
+        });
+    };
+    BarsViewer.prototype.going = function (bar) {
+        return _.includes(this.user.visited, bar.id);
+    };
+    BarsViewer.prototype.addBar = function (id) {
+        this._authService.addBar(this.user._id, id).subscribe(function (user) {
+            console.log(user);
         });
     };
     BarsViewer.prototype.ngOnInit = function () {
@@ -66288,13 +66299,13 @@ var BarsViewer = (function () {
             selector: 'bars-viewer',
             templateUrl: './templates/bars-viewer.component.html',
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService, storage_service_1.StorageService])
+        __metadata('design:paramtypes', [api_service_1.ApiService, storage_service_1.StorageService, auth_service_1.AuthService])
     ], BarsViewer);
     return BarsViewer;
 }());
 exports.BarsViewer = BarsViewer;
 
-},{"../classes/query":400,"../services/api.service":405,"../services/storage.service":407,"@angular/core":154}],403:[function(require,module,exports){
+},{"../classes/query":400,"../services/api.service":405,"../services/auth.service":406,"../services/storage.service":407,"@angular/core":154,"lodash":376}],403:[function(require,module,exports){
 "use strict";
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var app_module_1 = require('./modules/app.module');
@@ -66394,6 +66405,20 @@ var AuthService = (function () {
     }
     AuthService.prototype.fetch = function () {
         return this.http.get('/auth/user')
+            .map(function (response) { return response.json(); });
+    };
+    AuthService.prototype.addBar = function (userId, barId) {
+        var body = {
+            userId: userId,
+            barId: barId
+        };
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        var options = new http_1.RequestOptions({
+            headers: headers
+        });
+        return this.http.put('/auth/user', body, options)
             .map(function (response) { return response.json(); });
     };
     AuthService = __decorate([
