@@ -18,7 +18,7 @@ app.use(session({
     secret: 'dev',
 }));
 
-require('./config/passport')(app);
+require('./server-side/config/passport')(app);
 
 var oauth = {
     consumer_key: process.env.consumer_key,
@@ -26,8 +26,8 @@ var oauth = {
     token: process.env.token,
     token_secret: process.env.token_secret,
 };
-var apiRouter = require('./routes/api/main')(oauth);
-var authRouter = require('./routes/auth/main')();
+var apiRouter = require('./server-side/routes/api/main')(oauth);
+var authRouter = require('./server-side/routes/auth/main')();
 
 app.use(express.static(__dirname + '/public'));
 app.use('/api', apiRouter);
