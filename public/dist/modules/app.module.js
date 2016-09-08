@@ -22,9 +22,9 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule],
             declarations: [app_component_1.App, bars_viewer_component_1.BarsViewer],
-            providers: [http_1.HTTP_PROVIDERS, api_service_1.ApiService, storage_service_1.StorageService, auth_service_1.AuthService],
+            providers: [api_service_1.ApiService, storage_service_1.StorageService, auth_service_1.AuthService],
             bootstrap: [app_component_1.App]
         }), 
         __metadata('design:paramtypes', [])
