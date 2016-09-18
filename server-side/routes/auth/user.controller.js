@@ -28,18 +28,17 @@ var userController = () => {
                         error: 'Please login!'
                     });
                 }
-                console.log(user.visited);
+                console.log('before update', user.visited);
                 _.indexOf(user.visited, barId) === -1 ? user.visited.push(barId) : _.remove(user.visited, id => id === barId);
-
-                user.save((err) => {
+                console.log('after update', user.visited);
+                User.update({_id: userId}, {visited: user.visited}, (err, raw) => {
                     if (err) {
                         console.log(err);
                     }
-                    console.log(user.visited);
                     req.user.visited = user.visited;
                     res.json(user);
-
                 });
+             
             });
         }
         else {
