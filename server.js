@@ -33,6 +33,6 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api', apiRouter);
 app.use('/auth', authRouter);
 
-app.listen(process.env.port || '8080', process.env.IP || '0.0.0.0', function() {
+app.listen(process.env.port || process.env.PORT|| '8080', process.env.IP || '0.0.0.0', function() {
     console.log('The server is on and is accepting requests...');
 });
