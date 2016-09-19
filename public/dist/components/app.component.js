@@ -21,7 +21,6 @@ var App = (function () {
         var _this = this;
         this._authService.fetch().subscribe(function (user) {
             _this.user = user;
-            console.log(_this.user);
         });
     };
     App.prototype.ngOnInit = function () {

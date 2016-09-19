@@ -29,7 +29,6 @@ var BarsViewer = (function () {
         this._storageService.store(this.query);
         this._apiService.fetch(location).subscribe(function (bars) {
             _this.bars = bars;
-            console.log('yelp response', bars);
         });
     };
     BarsViewer.prototype.going = function (bar) {

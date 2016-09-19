@@ -23,7 +23,6 @@ export class App {
     fetchUser(): void {
         this._authService.fetch().subscribe((user: User) => {
             this.user = user;
-            console.log(this.user);
         });
     }
     ngOnInit() {
