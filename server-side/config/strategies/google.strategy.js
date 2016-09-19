@@ -7,7 +7,7 @@ module.exports = function() {
     passport.use(new GoogleStrategy({
             clientID: '233946367657-4daslmopfonpjpkh7quemem729f5a7ba.apps.googleusercontent.com',
             clientSecret: 'E8MCOMI3pRS1OmIhpzyo5f9c',
-            callbackURL: 'https://nightlife-maxboyko.c9users.io/auth/google/callback'
+            callbackURL: process.env.callbackURL||'https://nightlife-maxboyko.c9users.io/auth/google/callback'
         },
         function(req, accessToken, refreshToken, profile, done) {
 
