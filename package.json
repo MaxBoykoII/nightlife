@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "clean": "rm -rf ./public/dist",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc"
   },
   "repository": {
     "type": "git",
