@@ -5,7 +5,7 @@ var session = require('cookie-session');
 
 
 var app = express();
-var db = mongoose.connect(process.env.db || 'mongodb://maxboyko-nightlife-3563982');
+var db = mongoose.connect(process.env.db);
 
 //app.use(cookieParser);
 app.use(bodyParser.json());
