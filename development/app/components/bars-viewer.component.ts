@@ -34,7 +34,7 @@ export class BarsViewer {
         this._storageService.store(this.query);
         this._apiService.fetch(location).subscribe((bars: Bar[]) => {
             this.bars = bars;
-            console.log(bars);
+            console.log('yelp response', bars);
         });
     }
     going(bar:Bar):boolean {

@@ -18,6 +18,7 @@ var router = function(oauth) {
                 })
                 .catch(function(err) {
                     res.json(err);
+                    console.log(err);
                 });
 
         });
