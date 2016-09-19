@@ -4,13 +4,8 @@
   "description": "A nightlife coordination app",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./public/dist",
-    "typings": "typings install",
-    "postinstall": "npm run typings",
     "build": "npm run clean && tsc",
-    "build_prod": "npm run build && browserify -s main public/dist/main.js > public/dist/bundle.js && npm run minify",
-    "minify": "uglifyjs public/dist/bundle.js --compress --mangle --output public/dist/bundle.min.js"
   },
   "repository": {
     "type": "git",
