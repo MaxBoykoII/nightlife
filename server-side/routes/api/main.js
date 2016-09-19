@@ -11,8 +11,7 @@ var router = function(oauth) {
                 term: 'bar',
                 location: location || 'San Francisco, CA',
             };
-            req.user? console.log(req.user) : console.log('unauthenticated user');
-            console.log(parameters);
+            
             yelp.search(parameters)
                 .then(function(data) {
                     res.json(data.businesses);
