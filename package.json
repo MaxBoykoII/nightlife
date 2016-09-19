@@ -4,6 +4,7 @@
   "description": "A nightlife coordination app",
   "main": "main.js",
   "scripts": {
+    "start": "node server.js",
     "clean": "rm -rf ./public/dist",
     "build": "npm run clean && tsc"
   },
